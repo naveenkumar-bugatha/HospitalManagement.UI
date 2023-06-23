@@ -1,0 +1,70 @@
+.patient-header-record{
+    width: 80%;
+    height: 50px;
+    background-color:#959796;
+    margin-left: 10%;
+    margin-bottom: 10px;
+    display: table; 
+    overflow: hidden;
+}
+
+.header-record{
+    display: table; 
+    overflow: hidden;
+    display:inline-block;
+    width:100%;
+}
+
+.patient-header {
+    font-size: 35px;
+    margin-left: 10%;
+    margin-top: 50px;
+    padding-bottom: 20px;
+}
+
+.patient-coulmn-header{
+    font-size: 20px;
+    display: inline-block;
+    font-weight: 600;
+    width:15%;
+    display: table-cell; 
+    vertical-align: middle;
+    text-align: center;
+}
+
+.patient-actions{
+    font-size: 20px;
+    display: inline-block;
+    font-weight: 600;
+    width:28%;
+    display: table-cell; 
+    vertical-align: middle;
+    text-align: center;
+}
+
+.patient-edit{
+    padding-left: 50px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.patient-delete{
+    padding-left: 10px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.add-button{
+    height: 30px;
+    width: 140px;
+    padding-top: 5px;
+    border-radius: 6px;
+    border-width: 1px;
+    cursor: pointer;
+}
+
+.add-button-div{
+    float:right;
+    margin-top: 50px;
+    margin-right:10%
+}

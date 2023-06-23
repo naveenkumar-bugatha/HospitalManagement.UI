@@ -1,5 +1,5 @@
 import "./login.scss";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch } from "../../store/store";
@@ -75,7 +75,10 @@ export function Login(props: LoginProps)
         <div className="container login">
                 <div className="container-header">Login</div>
                 <table style={{margin: "0 auto"}}>
-                    <th></th>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                    </tr>
                     <tr className="form-row">
                         <td className="form-label">
                             <label> Email:</label>    
@@ -101,7 +104,10 @@ export function Login(props: LoginProps)
         <div className="container Register">
                 <div className="container-header">Register</div>
                 <table style={{margin: "0 auto"}}>
-                    <th></th>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                    </tr>
                     <tr className="form-row">
                         <td className="form-label">
                             <label> Email:</label>    
