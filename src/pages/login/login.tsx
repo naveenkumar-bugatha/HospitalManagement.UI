@@ -1,9 +1,10 @@
 import "./login.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch } from "../../store/store";
 import { addLoginUser } from "../../store/features/loginSlice";
+import { UserContext } from "../../contexts/userContext";
 
 type LoginProps = {
     navigate: any;
@@ -19,12 +20,14 @@ export function Login(props: LoginProps)
     const regExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     const regPassword = new RegExp(/^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%@&? "]).*$/);
     const dispatch = useAppDispatch();
+    const {user, setUser} = useContext(UserContext);
 
     const onLogin = () =>{
           if(regExpEmail.test(email) && regPassword.test(password)){
               toast.success("Login Successful !", {
                 position: toast.POSITION.TOP_RIGHT
               });
+              setUser({name:'',email:email});
               dispatch(addLoginUser({name: "Naveen Kumar", isLoggedIn: true, email: email, id:1}))
               props.navigate("/dashboard");
           }
@@ -75,25 +78,22 @@ export function Login(props: LoginProps)
         <div className="container login">
                 <div className="container-header">Login</div>
                 <table style={{margin: "0 auto"}}>
-                    <tr>
-                      <th></th>
-                      <th></th>
-                    </tr>
+                    <th></th>
                     <tr className="form-row">
                         <td className="form-label">
-                            <label> Email:</label>    
+                            <label htmlFor="email"> Email:</label>    
                         </td>
                         <td>
-                            <input type="text" name="email" className="form-input"
+                            <input id="email" type="text" name="email" className="form-input"
                             value={email} onChange={(e)=> setEmail(e.target.value)} />
                         </td>
                     </tr>
                     <tr className="form-row">
                         <td className="form-label">
-                            <label> Password:</label>    
+                            <label htmlFor="password"> Password:</label>    
                         </td>
                         <td>
-                            <input type="password" name="password" className="form-input"
+                            <input id="password" type="password" name="password" className="form-input"
                             value={password} onChange={(e)=> setPassword(e.target.value)} />
                         </td>
                     </tr>
@@ -104,34 +104,31 @@ export function Login(props: LoginProps)
         <div className="container Register">
                 <div className="container-header">Register</div>
                 <table style={{margin: "0 auto"}}>
-                    <tr>
-                      <th></th>
-                      <th></th>
-                    </tr>
+                    <th></th>
                     <tr className="form-row">
                         <td className="form-label">
-                            <label> Email:</label>    
+                            <label htmlFor ="email"> Email:</label>    
                         </td>
                         <td>
-                            <input type="text" name="email" className="form-input"
+                            <input id ="email" type="text" name="email" className="form-input"
                             value={email} onChange={(e)=> setEmail(e.target.value)} />
                         </td>
                     </tr>
                     <tr className="form-row">
                         <td className="form-label">
-                            <label> Password:</label>    
+                            <label htmlFor="password"> Password:</label>    
                         </td>
                         <td>
-                            <input type="password" name="password" className="form-input"
+                            <input id="password" type="password" name="password" className="form-input"
                             value={password} onChange={(e)=> setPassword(e.target.value)} />
                         </td>
                     </tr>
                     <tr className="form-row">
                         <td className="form-label">
-                            <label>Confirm Password:</label>    
+                            <label htmlFor="confirm-password">Confirm Password:</label>    
                         </td>
                         <td>
-                            <input type="password" name="confirmPassword" className="form-input"
+                            <input id="confirm-password" type="password" name="confirmPassword" className="form-input"
                             value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} />
                         </td>
                     </tr>

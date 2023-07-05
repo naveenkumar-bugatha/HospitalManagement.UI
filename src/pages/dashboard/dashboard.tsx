@@ -2,11 +2,12 @@ import './dashboard.scss';
 import { Header } from "../../components/header/header";
 import { Footer } from '../../components/footer/footer';
 import { useAppSelector } from '../../store/store';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ApiService from '../../api/apiService';
 import { ApiConstants } from '../../api/apiConstants';
 import { Patient } from '../../common/models/patient';
 import { Record } from '../../components/record/record';
+import { UserContext } from '../../contexts/userContext';
 
 type DashboardProps = {
     navigate: any;
@@ -31,12 +32,15 @@ export function Dashboard(props: DashboardProps)
           })
           window.addEventListener('mousemove', displayMousePosition)
      },[]);
-
+     const {user} = useContext(UserContext);
     const loggedInUser = useAppSelector(state => state.LoginUser.user)
     return(
         <div>
             <Header loggedInUserName = {loggedInUser.name}/>
-            <div style={{textAlign:'center'}}>Coordinates [ X - {x} ]  [ Y - {y} ]</div>
+            <div style={{textAlign:'center'}}>
+                Coordinates [ X - {x} ]  [ Y - {y} ] 
+                <span style={{fontWeight:600, paddingLeft:'10px'}}>{user.email}</span>
+            </div>
                 <div className="header-record">
                     <div className="add-button-div">
                         <button className="add-button" onClick={()=>null}>+ Add Patient</button>
