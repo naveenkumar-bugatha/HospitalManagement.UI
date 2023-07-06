@@ -1,5 +1,5 @@
 import './dashboard.scss';
-import { Header } from "../../components/header/header";
+import { Header } from '../../components/header/header';
 import { Footer } from '../../components/footer/footer';
 import { useAppSelector } from '../../store/store';
 import { useContext, useEffect, useState } from 'react';
@@ -15,7 +15,7 @@ type DashboardProps = {
 
 export function Dashboard(props: DashboardProps)
 { 
-    let patientsData : Patient[] = [];
+    const patientsData : Patient[] = [];
     const [patients , setPatients] = useState(patientsData);
     const [x , setX] = useState(0);
     const [y , setY] = useState(0);
@@ -24,16 +24,16 @@ export function Dashboard(props: DashboardProps)
     const displayMousePosition = (e:any) => {
         setX(e.clientX);
         setY(e.clientY);
-    }
+    };
 
     useEffect(()=>{
         ApiService.get(ApiConstants.Patient.GetAll).then((res)=>{
             setPatients(res);
-          })
-          window.addEventListener('mousemove', displayMousePosition)
-     },[]);
-     const {user} = useContext(UserContext);
-    const loggedInUser = useAppSelector(state => state.LoginUser.user)
+        });
+        window.addEventListener('mousemove', displayMousePosition);
+    },[]);
+    const {user} = useContext(UserContext);
+    const loggedInUser = useAppSelector(state => state.LoginUser.user);
     return(
         <div>
             <Header loggedInUserName = {loggedInUser.name}/>
@@ -41,24 +41,24 @@ export function Dashboard(props: DashboardProps)
                 Coordinates [ X - {x} ]  [ Y - {y} ] 
                 <span style={{fontWeight:600, paddingLeft:'10px'}}>{user.email}</span>
             </div>
-                <div className="header-record">
-                    <div className="add-button-div">
-                        <button className="add-button" onClick={()=>null}>+ Add Patient</button>
-                    </div>
-                    <div className="patient-header">List of Patients</div> 
+            <div className="header-record">
+                <div className="add-button-div">
+                    <button className="add-button" onClick={()=>null}>+ Add Patient</button>
                 </div>
-                <div className="patient-header-record">
-                    <div className="patient-coulmn-header">ID</div>
-                    <div className="patient-coulmn-header">Patient Name</div>
-                    <div className="patient-coulmn-header">Age</div>
-                    <div className="patient-coulmn-header">City</div>
-                    <div className="patient-actions">Actions</div>
-                </div>
-                {
-                    patients.map((each) =>(
-                        <Record navigate={props.navigate} patient={each}/>
-                    ))
-                }                
+                <div className="patient-header">List of Patients</div> 
+            </div>
+            <div className="patient-header-record">
+                <div className="patient-coulmn-header">ID</div>
+                <div className="patient-coulmn-header">Patient Name</div>
+                <div className="patient-coulmn-header">Age</div>
+                <div className="patient-coulmn-header">City</div>
+                <div className="patient-actions">Actions</div>
+            </div>
+            {
+                patients.map((each) =>(
+                    <Record key={each.id} navigate={props.navigate} patient={each}/>
+                ))
+            }                
             <Footer/>
         </div>
     );

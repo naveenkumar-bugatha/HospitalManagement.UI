@@ -15,8 +15,10 @@ const defaultState = {
         name: '',
         email: ''
     },
-    setUser: (user: User) => {}
-} as IUserContext
+    setUser: (user: User) => {
+        return;
+    }
+} as IUserContext;
 
 export const UserContext = createContext(defaultState);
 
@@ -33,5 +35,5 @@ export default function UserProvide({children}: userProvideProps){
         <UserContext.Provider value={{user, setUser}}>
             {children}
         </UserContext.Provider>
-    )
+    );
 }
